@@ -39,6 +39,15 @@ export function ApiTestPanel({
 }: ApiTestPanelProps) {
   const [collapsed, setCollapsed] = useState(false);
 
+  const handleEndpointPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    if (apiType !== 'anthropic') return;
+    const text = e.clipboardData.getData('text/plain').trim().replace(/\/+$/, '');
+    if (text && !text.endsWith('/v1/messages')) {
+      e.preventDefault();
+      onFieldChange('apiEndpoint', text + '/v1/messages');
+    }
+  };
+
   return (
     <div className="rounded-xl border border-slate-200/60 dark:border-slate-700/40 bg-gradient-to-br from-slate-50/80 to-blue-50/40 dark:from-slate-800/60 dark:to-blue-950/20 p-4">
       <button
@@ -72,6 +81,7 @@ export function ApiTestPanel({
                 type="text"
                 value={apiEndpoint}
                 onChange={(e) => onFieldChange('apiEndpoint', e.target.value)}
+                onPaste={handleEndpointPaste}
                 placeholder="https://api.xxx.com/v1/messages"
                 className="input-field"
               />
