@@ -28,6 +28,7 @@ export function EnvImportCard({ onFieldChange }: EnvImportCardProps) {
     }
 
     e.preventDefault();
+    if (parsed.apiType) onFieldChange('apiType', parsed.apiType);
     if (parsed.apiEndpoint) onFieldChange('apiEndpoint', parsed.apiEndpoint);
     if (parsed.apiKey) onFieldChange('apiKey', parsed.apiKey);
     showFeedback('success');

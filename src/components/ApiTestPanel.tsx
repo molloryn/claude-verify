@@ -2,6 +2,24 @@ import { useState } from 'react';
 import { ChevronDown, ChevronUp, Zap } from 'lucide-react';
 import type { ApiType } from '@/core/types';
 
+const ANTHROPIC_MODELS = [
+  'claude-sonnet-4-5-20250929',
+  'claude-sonnet-4-5-20250929-thinking',
+  'claude-haiku-4-5',
+  'claude-haiku-4-5-20251001',
+  'claude-haiku-4-5-20251001-thinking',
+  'claude-opus-4-5-20251101',
+  'claude-opus-4-5-20251101-thinking',
+  'claude-opus-4-6',
+  'claude-opus-4-6-20260206',
+  'claude-opus-4-6-thinking',
+];
+
+const OPENAI_MODELS = [
+  'gpt-5.2-codex',
+  'gpt-5.3-codex',
+];
+
 interface ApiTestPanelProps {
   apiType: ApiType;
   apiEndpoint: string;
@@ -74,11 +92,17 @@ export function ApiTestPanel({
               <span className="text-xs font-medium text-slate-500 dark:text-slate-400">模型（可选）</span>
               <input
                 type="text"
+                list="model-options"
                 value={apiModel}
                 onChange={(e) => onFieldChange('apiModel', e.target.value)}
-                placeholder="如 claude-sonnet-4-5-20250929"
+                placeholder="选择或输入模型名称"
                 className="input-field"
               />
+              <datalist id="model-options">
+                {(apiType === 'anthropic' ? ANTHROPIC_MODELS : OPENAI_MODELS).map((m) => (
+                  <option key={m} value={m} />
+                ))}
+              </datalist>
             </label>
           </div>
 
