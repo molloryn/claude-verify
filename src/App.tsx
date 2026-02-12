@@ -3,6 +3,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { StatusCard } from '@/components/StatusCard';
 import { ApiTestPanel } from '@/components/ApiTestPanel';
+import { EnvImportCard } from '@/components/EnvImportCard';
 import { ManualInputForm } from '@/components/ManualInputForm';
 import { ResultBadge } from '@/components/ResultBadge';
 import { ScoreGauge } from '@/components/ScoreGauge';
@@ -35,6 +36,7 @@ export default function App() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-5 p-6">
           <div className="flex flex-col gap-4">
+            <EnvImportCard onFieldChange={handleFieldChange} />
             <ApiTestPanel
               apiType={state.apiType}
               apiEndpoint={state.apiEndpoint}
