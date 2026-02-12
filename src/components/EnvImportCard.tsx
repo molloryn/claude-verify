@@ -48,9 +48,9 @@ export function EnvImportCard({ onFieldChange }: EnvImportCardProps) {
       </span>
       <textarea
         onPaste={handlePaste}
-        rows={2}
-        placeholder={'粘贴 export 语句即可自动填充，例如：\nexport ANTHROPIC_BASE_URL="https://..." \nexport ANTHROPIC_AUTH_TOKEN="sk-..."'}
-        className={`input-field resize-none text-xs transition-colors duration-300 ${
+        rows={3}
+        placeholder={'粘贴 export 语句即可自动填充，例如：\nexport ANTHROPIC_BASE_URL="https://..."\nexport ANTHROPIC_AUTH_TOKEN="sk-..."'}
+        className={`input-field w-full text-sm transition-colors duration-300 ${
           feedback === 'success'
             ? 'border-green-400 dark:border-green-500'
             : feedback === 'error'
